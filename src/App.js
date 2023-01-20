@@ -7,11 +7,19 @@ import { LineChart, PieChart, CartesianGrid, XAxis,YAxis,Tooltip,Legend,Line,Pie
 const App = () => {
   const dt =[]
   const [data, setData] = useState(dt);
+  const [data1, setData1] = useState(dt);
 
   useEffect(() => {
     fetch('uvs.json')
     .then(function(myJson) {
       setData(myJson)
+    });
+  }, []);
+
+  useEffect(() => {
+    fetch('ca.json')
+    .then(function(myJson) {
+      setData1(myJson)
     });
   }, []);
 
@@ -28,8 +36,8 @@ const App = () => {
       </LineChart>
 
       <PieChart width={730} height={250}>
-        <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
-        <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
+        <Pie data={data1} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
+        <Pie data={data1} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
       </PieChart>
 
      
